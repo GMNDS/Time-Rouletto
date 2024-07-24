@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasm Canvas</title>
+    <style>
+        #canvas {
+            border: 5px solid #CCC;
+        }
+    </style>
+    
+</head>
+<body >
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <br>
+    <button id="roll" name="roll">Roll</button>
+    <script type="module">
+        import { run } from './main.js';
+        document.getElementById('roll').addEventListener('click', () => {
+            run();
+        });
+    </script>
+</body>
+</html>

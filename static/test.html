@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+        canvas {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <script>
+        class RotatingObject {
+            constructor(x, y, r) {
+                this.r = r;
+                this.angle = 0;
+                this.origin = { x: x, y: y };
+                this.angularVelocity = 50.0; // Velocidade inicial
+                this.angularAcceleration = -0.4; // Desaceleração
+                this.position = { x: 0, y: 0 };
+            }
+            
+            update() {
+                this.angularVelocity += this.angularAcceleration;
+                if (this.angularVelocity < 0) this.angularVelocity = 0; // Parar desaceleração
+
+                this.angle += this.angularVelocity;
+                this.position.x = this.r * Math.sin(this.angle * Math.PI / 180) + this.origin.x;
+                this.position.y = this.r * Math.cos(this.angle * Math.PI / 180) + this.origin.y;
+            }
+            
+            draw(ctx) {
+                ctx.strokeStyle = 'rgb(0, 0, 0)';
+                ctx.lineWidth = 15;
+                ctx.beginPath();
+                ctx.moveTo(this.origin.x, this.origin.y);
+                ctx.lineTo(this.position.x, this.position.y);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(this.position.x, this.position.y, 20, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+
+        function run() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            let rotatingObject1 = new RotatingObject(canvas.width / 2 , canvas.height/2, 200);
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                rotatingObject1.update();
+                rotatingObject1.draw(ctx);
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+
+        run();
+    </script>
+</body>
+</html>
