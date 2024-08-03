@@ -1,5 +1,5 @@
 [package]
-name = "roulette_clock"
+name = "time_rouletto"
 version = "0.1.0"
 authors = ["GMNDS gabriel@gmnds.com"]
 edition = "2021"

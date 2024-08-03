@@ -24,7 +24,7 @@ impl Pointer {
     pub fn new(x: f64, y: f64, r: f64) -> Pointer {
         let mut rng = ThreadRng::default();
         let angular_velocity: f64 = rng.gen_range(25.0..100.0);
-        let angular_deceleration = rng.gen_range(0.94..0.99);
+        let angular_deceleration = rng.gen_range(0.94..0.98);
         Pointer {
             pos_origin: Vector::new(x, y),
             pos_actual: Vector::new(0.0, 0.0),

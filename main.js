@@ -1,4 +1,4 @@
-import init, { Pointer } from '../pkg/rpg_clock.js';
+import init, { Pointer } from '../pkg/time_rouletto.js';
 import { drawSkeleton, drawNumbers, drawPoints } from './utils.js'
 
 export async function run() {
